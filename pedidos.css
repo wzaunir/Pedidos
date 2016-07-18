@@ -1,0 +1,76 @@
+ body{
+	    font-family: "Trebuchet MS",Arial,sans-serif;
+	    font-size: 14px;
+	  }
+	  
+	  
+	  #lista{
+	    width:90%;
+	    border:1px solid #DDD;
+	    margin: 0 auto;
+	    margin-top: 10px;
+	  }
+	  
+	  #lista thead{
+	    background-color: #DDD;
+	    color: #009;
+	  }
+
+	  
+	   #lista thead td{
+	    text-align:center;
+	    font-weight:bold;
+	    padding:4px;
+	  }
+	  
+	  #lista tfoot{
+	    background-color: #999;
+	    color: #FFF;
+	   
+	  }
+	   #lista tfoot td{
+	    text-align:right;
+	    font-weight:bold;
+	    padding:8px;
+	   
+	   }
+	  #form{
+	    width:90%;
+	    margin: 0 auto;
+	    border:1px solid #DDD;
+	  }
+	  .totalizar{
+	    color:#900;
+	    font-weight:bold;
+	  }	
+	  .text-right{
+	    text-align: right;
+	  
+	  }
+	  
+	  #form{  
+	  
+	  width:40%;
+	  }
+	  #form label {
+	  
+	      display: inline-block;
+	      width: 100px;
+	  }
+	  
+	  #form input {
+	     
+	      padding: 4px;
+	  }
+	  #form legend{
+	    text-align:left;
+	    font-size:1.4em;
+	  
+	  }
+	  #form button{
+	    width: 100px;
+	    padding: 4px;
+	    float:right;
+	    margin-right:20px;
+	    
+	  }
