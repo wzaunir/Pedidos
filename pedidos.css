@@ -74,3 +74,12 @@
 	    margin-right:20px;
 	    
 	  }
+	  
+	  .erro{
+	    
+	      color:red;
+	  }
+	  .erro input{
+	      border: 1px solid red;
+	      color:red;
+	  }
