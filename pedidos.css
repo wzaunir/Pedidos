@@ -58,9 +58,12 @@
 	      width: 100px;
 	  }
 	  
-	  #form input {
+	  #form input,#form select{
+	      width: 50%;
+	      padding: 8px;
+	      margin: 2px;
+	      background-color: #FFF;
 	     
-	      padding: 4px;
 	  }
 	  #form legend{
 	    text-align:left;
@@ -79,7 +82,7 @@
 	    
 	      color:red;
 	  }
-	  .erro input{
-	      border: 1px solid red;
+	  .erro input,.erro select{
+	      border: 1px solid #900;
 	      color:red;
 	  }

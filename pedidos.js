@@ -1,6 +1,51 @@
 $(document).ready(function(){
   
- 
+  var listaProdutos;
+      
+    $.getJSON( "produtos.json", function( data ) {    
+      
+      listaProdutos = data;
+      
+      $(data).each(function(idx,elem) {
+	    $('.produto-nome').append( '<option value="'+elem.cod+'">'+elem.nome+'</option>');
+      });
+      
+    });
+    
+    $("[name='produto-cod']").keyup(function(event) {
+	
+	  var elem = pesquisaProduto($(this).val());
+
+	  
+	  if(elem != null){
+	  $('.produto-nome').val(elem.cod);
+	  $('.val-unit').val(formataReais (elem.preco));
+	  }else{
+	    $('.produto-nome').val("");
+	  }
+      });
+  
+    function pesquisaProduto(cod){      
+      for (idx in listaProdutos){
+	
+	var codigo = listaProdutos[idx].cod.toString();
+	
+	var busca = codigo.search(cod);
+
+	if(busca >= 0){
+	 // console.log(l);
+	  return listaProdutos[idx]
+	}
+	
+      }
+    
+      
+    }
+      
+        
+   
+  
+  
 	$('.quant').keydown(function(event) {
   
 	  
@@ -15,10 +60,16 @@ $(document).ready(function(){
 	$('.val-unit').keydown(function(event) {
   
 	 
-	  if( ( event.keyCode>=48 && event.keyCode <=59) || ( event.keyCode>=96 && event.keyCode <=105) || ( event.keyCode>=35 && event.keyCode <=40)){ 
+	  event.preventDefault();
+	  if( ( event.keyCode>=48 && event.keyCode <=59)){ 
 	    
-	    var val = $('.val-unit').val();
+	    
+	    var val = $('.val-unit').data('valor') || '';	      
+	    
 	    var digitado = String.fromCharCode(event.keyCode);
+	    console.log(val+digitado);
+	    $('.val-unit').data('valor',val+digitado);
+	    $('.val-unit').val(formataReais (val+digitado));
 	      return true;
 	  }else{
 	    return false;
@@ -26,16 +77,24 @@ $(document).ready(function(){
 	  
 	});
   
+	$('.produto-nome').change(function(e){
+	  
+	      $("[name='produto-cod']").val($(this).val());
+	  
+	});
+	
 	var totalGeral = 0;
 	  $("#add").click(function(){
 	     
 	    var formValido = true;
 	    $('#form div.erro').removeClass('erro');
 	    
-	    $('#form input').each(function(index,elem) {	     
+	    $('#form input,#form select').each(function(index,elem) {	     
 	     
-		if($(elem).val() == ''){
+		if($(elem).val() == ''){ 
+		 
 		  $(elem).parent().addClass('erro');
+		
 		  formValido = false;
 		}		
 	      
@@ -47,7 +106,7 @@ $(document).ready(function(){
 	    var cod = $("[name='produto-cod']").val();
 	    var produto = $("[name='produto']").val();
 	    var qtde = $("[name='qtde']").val();
-	    var unit = $("[name='val-unit']").val();
+	    var unit = $('.val-unit').data('valor');
 
 			  
 	    var total = parseFloat(unit) * parseFloat(qtde);
@@ -70,7 +129,7 @@ $(document).ready(function(){
 	  
 	  function formataReais(valor){
 	    
-	    
+	    valor = parseFloat(valor);
 	    
 	    var formatado = "R$";
 	    var inicial = valor.toFixed(2).toString();
@@ -90,7 +149,7 @@ $(document).ready(function(){
 	    return formatado;
 	      
 	  }
-  
+
   
   
 });
